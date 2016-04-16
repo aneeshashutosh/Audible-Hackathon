@@ -6,6 +6,34 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
   </head>
   <body>
+    <div id="amazon-root"></div>
+    <script type="text/javascript">
+
+      window.onAmazonLoginReady = function() {
+        amazon.Login.setClientId('amzn1.application-oa2-client.8cdbf385d1f6464bb00fcf6b027e9fb5');
+      };
+      (function(d) {
+        var a = d.createElement('script'); a.type = 'text/javascript';
+        a.async = true; a.id = 'amazon-login-sdk';
+        a.src = 'https://api-cdn.amazon.com/sdk/login1.js';
+        d.getElementById('amazon-root').appendChild(a);
+      })(document);
+
+    </script>
+    <a href="#" id="LoginWithAmazon">
+      <img border="0" alt="Login with Amazon"
+        src="https://images-na.ssl-images-amazon.com/images/G/01/lwa/btnLWA_gold_156x32.png"
+        width="156" height="32" />
+    </a>
+    <script type="text/javascript">
+
+    document.getElementById('LoginWithAmazon').onclick = function() {
+      options = { scope : 'audible:content_read' };
+      amazon.Login.authorize(options, 'http://localhost:8888/handle_login.php');
+      return false;
+    };
+
+  </script>
   	<div class='container.fluid'>
 	  <div class='row'>
 	  	<div class='col-md-3' style="height: 69px; background-color: white"> <img src="AUDIBLE_LOGO.svg"></img></div>
@@ -24,7 +52,7 @@
 	              <i class='glyphicon glyphicon-search'></i>
 	            </button>
 	           	<input class='form-control' placeholder='ex: Moby Dick, To Kill a Mockingbird, Reminiscences of a Stock Operator, etc.' type='text'>
-	            
+
 	          </form>
 	        </div>
 	    </div>
